@@ -120,6 +120,7 @@ static void reset_ep(uint8_t ep_addr, bool in_isr)
     xud_speed = rtos_usb_endpoint_reset(&usb_ctx, ep_addr);
     waiting_for_setup = true;
     tu_speed = xud_to_tu_speed(xud_speed);
+    prepare_setup(in_isr);
     dcd_event_bus_reset(0, tu_speed, in_isr);
 }
 
